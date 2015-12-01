@@ -20,7 +20,9 @@ path = 'handclapping.mp4';
 [video, frameNum] = load_and_preprocess_video(path);
 %%
 for i=1:frameNum,
-    imagesc(video(:,:,:,i));
+    % help I don't know how to display an RBG image (just displaying the R)
+    display(i);
+    imagesc(video(:,:,1,i));
     pause(0.05);
 end
 
