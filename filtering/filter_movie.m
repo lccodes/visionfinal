@@ -25,11 +25,11 @@ end
 filtered_video = imfilter(video,gabor);
 
 %% If you want to watch it...
-for i=1:frameNum,
-    % displaying R channel
-    imagesc(filtered_video(:,:,1,i));
-    pause(0.05);
-end
+% for i=1:frameNum,
+%     % displaying R channel
+%     imagesc(filtered_video(:,:,1,i));
+%     pause(0.05);
+% end
 
 %%
 v = VideoWriter(outputFile);
