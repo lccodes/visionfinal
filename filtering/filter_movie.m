@@ -38,7 +38,7 @@ for f=1:frameNum,
     frame = mat2gray(filtered_video(:,:,:,f));
     writeVideo(v,frame);
 end
-message = sprintf('Video write to file "%c" complete.', outputFile);
+message = sprintf('Video write to file "%s" complete.', outputFile);
 display(message);
 close(v);
 
