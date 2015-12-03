@@ -16,7 +16,7 @@ loaded_video = VideoReader(path);
 
 y = loaded_video.Width;
 x = loaded_video.Height;
-num_frames = int16(fix(loaded_video.FrameRate*loaded_video.Duration));
+num_frames = 100;%int16(fix(loaded_video.FrameRate*loaded_video.Duration));
 
 display(num_frames);
 display(x);

@@ -2,7 +2,7 @@
 path = 'YOUR_PATH_HERE';
 outputFile = 'FILE_TO_WRITE_TO';
 
-path = 'handclapping.mp4';
+path = '../drinking.avi';
 outputFile = 'newVid.avi';
 
 %% Create our motion gabors
