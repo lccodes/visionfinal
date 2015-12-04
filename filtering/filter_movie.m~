@@ -1,0 +1,95 @@
+%% Change these:
+path = 'YOUR_ACTION_FOLDER_PATH_HERE';
+path = 'test_vids';
+
+%% Create our spatial gabors
+gabor_size = 25;    
+lambda = 5;   
+theta= [0, pi/2, pi, (2/3)*pi]; 
+sigma = 2;    
+gamma = .5;   
+psi = 0;
+
+simples = cell(1,length(theta));
+for i=1:length(theta),
+    simples{1,i} = simple_cell(gabor_size, lambda, theta(i), sigma, gamma, psi);
+end
+
+%% Create our spatiotemporal gabors
+theta = 0;
+omega = [-4*pi,-pi/2,pi/2,4*pi]; 
+
+motions = cell(1,length(theta));
+for i=1:length(omega),
+    motions{1,i} = spatio_temporal(gabor_size, omega(i), lambda, theta, sigma, gamma, psi);
+end
+
+%% Load and preprocess the videos
+% Return cell array of preprocessed videos from directory 'path'
+files = dir(path);
+files = files(3:end); % truncate '.' and '..'
+n_files = length(files);
+actions = cell(n_folders,1);
+for i=1:n_folders,
+   sb
+   actions{i} = load_and_preprocess_folder( 
+end
+    
+
+%%
+
+[video, frameNum] = load_and_preprocess_video(path);
+video_simple = video; %copy to use with simples
+
+%% Filter the videos and convert output to .AVI
+filtered_simple = apply_filters(video_simple, simples);
+%%
+filtered_spatio = apply_filters(video, motions);
+
+%% If you want to watch it...
+for j=1:4,
+    for i=1:frameNum,
+        % displaying R channel
+        imagesc(filtered_simple(:,:,1,i,j));
+        pause(0.01);
+    end
+end
+%%
+for j=1:4,
+    for i=1:frameNum,
+        % displaying R channel
+        imagesc(filtered_spatio(:,:,1,i,j));
+        pause(0.01);
+    end
+end
+
+%% Classify the actions being performed 
+
+
+
+
+
+
+
+%% Spatial video output
+v = VideoWriter(outputFile_m);
+open(v);
+for f=1:frameNum,
+    frame = mat2gray(filtered_simple(:,:,:,f));
+    writeVideo(v,frame);
+end
+message = sprintf('Video write to file "%s" complete.', outputFile_s);
+display(message);
+close(v);
+
+%% Spatiotemporal video output
+v2 = VideoWriter(outputFile_m);
+open(v2);
+for f=1:frameNum,
+    frame = mat2gray(filtered_spatio(:,:,:,f));
+    writeVideo(v2,frame);
+end
+message = sprintf('Video write to file "%s" complete.', outputFile_m);
+display(message);
+close(v2);
+

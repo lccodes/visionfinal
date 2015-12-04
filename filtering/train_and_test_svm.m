@@ -1,0 +1,1 @@
+function accuracy = train_and_test_svm(path)
