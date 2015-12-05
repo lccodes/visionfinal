@@ -78,8 +78,6 @@ end
 
 %% Classify the actions being performed 
 accuracy_spatial = train_and_test_svm(simple_actions);
-
-%%
 accuracy_spatiotemporal = train_and_test_svm(motion_actions);
 
 %% Extra: Spatial video output (to show for presentation?)
