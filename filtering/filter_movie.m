@@ -63,7 +63,7 @@ frameNum = num_frames{1}(1);
 for j=1:4,
     for i=1:frameNum,
         % displaying R channel
-        imagesc(simple_actions{1}{1}(:,:,1,i,j));
+        imagesc(simple_actions{1}{1}(:,:,i,j));
         pause(0.01);
     end
 end
@@ -72,7 +72,7 @@ frameNum = num_frames{1}(1);
 for j=1:4,
     for i=1:frameNum,
         % displaying R channel
-        imagesc(motion_actions{1}{1}(:,:,1,i,j));
+        imagesc(motion_actions{1}{1}(:,:,i,j));
         pause(0.01);
     end
 end

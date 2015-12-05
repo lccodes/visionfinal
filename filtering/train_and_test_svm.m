@@ -5,9 +5,8 @@ function accuracy = train_and_test_svm(features)
 feature_size = size(features{1}{1});
 x = feature_size(1);
 y = feature_size(2);
-c = feature_size(3);
-frames = feature_size(4);
-filters = feature_size(5);
+frames = feature_size(3);
+filters = feature_size(4);
 
 action_types = length(features);
 num_videos = 0;
@@ -15,7 +14,7 @@ for i=1:action_types,
    num_videos = num_videos + length(features{i}); 
 end
 
-vec_length = x*y*c*frames*filters;
+vec_length = x*y*frames*filters;
 feature_vector = zeros(num_videos,vec_length);
 
 count = 0;
