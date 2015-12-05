@@ -2,28 +2,20 @@ function accuracy = train_and_test_svm(features)
 % features{action_type}{video_num}(x,y,color,time,filter)
 
 %% Reshape features into feature vector of x by y by t by filter
-feature_size = size(features{1}{1});
-x = feature_size(1);
-y = feature_size(2);
-c = feature_size(3);
-frames = feature_size(4);
-filters = feature_size(5);
-
+frames = 40; %%CHANGE THIS!!!!!!!
 action_types = length(features);
 num_videos = 0;
 for i=1:action_types,
    num_videos = num_videos + length(features{i}); 
 end
 
-vec_length = x*y*c*frames*filters;
-feature_vector = zeros(num_videos,vec_length);
-
+feature_vector = zeros(num_videos,130,100,3,frames,);
 count = 0;
 for i=1:action_types,
     curr_vids = length(features{i});
     for j=1:curr_vids, %vids in curr action type
         count = count + 1;
-        feature_vector(count,:) = reshape(features{i}{j}, [1,vec_length]);
+        feature_vector(count,:,:,:,:,:) = features{i}{j};
     end
 end
 display(size(feature_vector));

@@ -1,5 +1,5 @@
 %% Change these:
-path = 'YOUR_ACTION_FOLDER_PATH_HERE';
+% path = 'YOUR_ACTION_FOLDER_PATH_HERE';
 path = 'test_vids';
 
 %% Create our spatial gabors
@@ -36,7 +36,7 @@ for i=1:num_actions,
    [actions{i}, num_frames{i}] = load_and_preprocess_folder(subfolder);
 end
 
-%% Filter the videos and convert output to .AVI
+%% Filter the videos
 simple_actions = cell(num_actions,1);
 for i=1:num_actions,
     num_vids = length(actions{i});
@@ -78,16 +78,18 @@ for j=1:4,
 end
 
 %% Classify the actions being performed 
+accuracy_spatial = train_and_test_svm(simple_actions);
 
-%TODO :O
-
-
-
-
+%%
+accuracy_spatiotemporal = train_and_test_svm(motion_actions);
 
 
 
-%% Spatial video output
+
+
+
+
+%% Extra: Spatial video output (to show for presentation?)
 % v = VideoWriter(outputFile_m);
 % open(v);
 % for f=1:frameNum,
