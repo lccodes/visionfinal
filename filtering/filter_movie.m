@@ -62,16 +62,15 @@ end
 frameNum = num_frames{1}(1);
 for j=1:4,
     for i=1:frameNum,
-        % displaying R channel
         imagesc(simple_actions{1}{1}(:,:,i,j));
         pause(0.01);
     end
 end
+
 %%
 frameNum = num_frames{1}(1);
 for j=1:4,
     for i=1:frameNum,
-        % displaying R channel
         imagesc(motion_actions{1}{1}(:,:,i,j));
         pause(0.01);
     end
@@ -82,12 +81,6 @@ accuracy_spatial = train_and_test_svm(simple_actions);
 
 %%
 accuracy_spatiotemporal = train_and_test_svm(motion_actions);
-
-
-
-
-
-
 
 %% Extra: Spatial video output (to show for presentation?)
 % v = VideoWriter(outputFile_m);

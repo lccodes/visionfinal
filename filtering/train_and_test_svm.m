@@ -38,17 +38,18 @@ display(size(feature_labels));
 
 
 %%
-mySize = size(features);
+mySize = size(feature_vector);
 perming = randperm(mySize(1,1)); %size of features
-features = features(perming,:);
-labels = labels(perming);
+feature_vector = feature_vector(perming,:);
+feature_labels = feature_labels(perming);
 
-splitMark = mySize*0.8;
-train_data = features((1:splitMark),:); %first 80%
-train_labels = labels((1:splitMark),:);
-test_data = features((splitMark+1):end,:); %last 20%
-test_labels = labels((splitMark+1):end,:);
+splitMark = floor(mySize*0.8);
+train_data = feature_vector((1:splitMark),:); %first 80%
+train_labels = feature_labels((1:splitMark),:);
+test_data = feature_vector((splitMark+1):end,:); %last 20%
+test_labels = feature_labels((splitMark+1):end,:);
 
 svm = fitcecoc(train_data,train_labels);
 [pLabel, pScore] = predict(svm,test_data);
-accuracyGabors = eval_accuracy(test_labels,pLabel);
+accuracy = eval_accuracy(test_labels,pLabel);
+
