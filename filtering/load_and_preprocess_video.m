@@ -24,7 +24,7 @@ for i=1:max_frames,
     frame = mat2gray(readFrame(loaded_video));
     frameNum = frameNum + 1;
     myVideo(:,:,:,i) = frame;
-    myVideo2(:,:,i) = imresize(myVideo(:,:,i),[reshapeX, reshapeY]);
+    myVideo2(:,:,i) = imresize(myVideo(:,:,1,i),[reshapeX, reshapeY]);
 end
 display(sprintf('Successfully loaded %d frames',frameNum));
 
