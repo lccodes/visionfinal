@@ -7,10 +7,10 @@ def main():
     # os.chdir(path)
     for root, dirs, files in os.walk(path):
         for file in files:
-            if file.endswith(".mp4"):
+            if file.endswith(".gif"):
                 filename = os.path.join(root, file)
-                aviname = filename.replace('mp4', 'avi')
-                command = '../ffmpeg -f mp4 -i ' + filename + ' -vf scale=320:240 ' + aviname
+                aviname = filename.replace('gif', 'avi')
+                command = '../ffmpeg -f gif -i ' + filename + ' -vf scale=320:240 ' + aviname
                 os.system(command)
 
 if __name__ == '__main__':
