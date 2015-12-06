@@ -1,4 +1,4 @@
-function accuracy = train_and_test_svm(features,filename)
+function [accuracy, feature_vector, feature_labels] = train_and_test_svm(features,filename)
 % features{action_type}{video_num}(x,y,color,time,filter)
 
 %% Reshape features into feature vector of x by y by t by filter
@@ -30,11 +30,10 @@ display(sprintf('Length of our feature vectors is %d\n', length(feature_vector))
 curr_vids = length(features{1});
 feature_labels = ones(curr_vids,1);
 for j=2:action_types,
-   curr_vids = length(features{i});
+   curr_vids = length(features{j});
    curr_labels = ones(curr_vids,1)*j;
    feature_labels = vertcat(feature_labels,curr_labels);
 end
-
 %%
 mySize = size(feature_vector);
 perming = randperm(mySize(1,1)); %size of features
