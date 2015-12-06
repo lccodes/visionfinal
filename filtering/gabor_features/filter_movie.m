@@ -59,26 +59,34 @@ for i=1:num_actions,
 end
 
 %% If you want to watch a video...
-frameNum = num_frames{1}(1);
-for j=1:4,
-    for i=1:frameNum,
-        imagesc(simple_actions{1}{1}(:,:,i,j));
-        pause(0.01);
-    end
-end
+% frameNum = num_frames{1}(1);
+% for j=1:4,
+%     for i=1:frameNum,
+%         imagesc(simple_actions{1}{1}(:,:,i,j));
+%         pause(0.01);
+%     end
+% end
 
 %%
-frameNum = num_frames{1}(1);
-for j=1:4,
-    for i=1:frameNum,
-        imagesc(motion_actions{1}{1}(:,:,i,j));
-        pause(0.01);
-    end
-end
+% frameNum = num_frames{1}(1);
+% for j=1:4,
+%     for i=1:frameNum,
+%         imagesc(motion_actions{1}{1}(:,:,i,j));
+%         pause(0.01);
+%     end
+% end
 
 %% Classify the actions being performed 
-accuracy_spatial = train_and_test_svm(simple_actions);
-accuracy_spatiotemporal = train_and_test_svm(motion_actions);
+accuracy_spatial = train_and_test_svm(simple_actions, 'spatial');
+
+%%
+accuracy_spatiotemporal = train_and_test_svm(motion_actions, 'spatiotemporal');
+
+
+
+
+
+
 
 %% Extra: Spatial video output (to show for presentation?)
 % v = VideoWriter(outputFile_m);

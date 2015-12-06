@@ -1,4 +1,4 @@
-function accuracy = train_and_test_svm(features)
+function accuracy = train_and_test_svm(features,filename)
 % features{action_type}{video_num}(x,y,color,time,filter)
 
 %% Reshape features into feature vector of x by y by t by filter
@@ -25,7 +25,7 @@ for i=1:action_types,
         feature_vector(count,:) = reshape(features{i}{j}, [1,vec_length]);
     end
 end
-display(size(feature_vector));
+display(sprintf('Length of our feature vectors is %d\n', length(feature_vector)));
 
 curr_vids = length(features{1});
 feature_labels = ones(curr_vids,1);
@@ -34,8 +34,6 @@ for j=2:action_types,
    curr_labels = ones(curr_vids,1)*j;
    feature_labels = vertcat(feature_labels,curr_labels);
 end
-display(size(feature_labels));
-
 
 %%
 mySize = size(feature_vector);
@@ -52,4 +50,13 @@ test_labels = feature_labels((splitMark+1):end,:);
 svm = fitcecoc(train_data,train_labels);
 [pLabel, pScore] = predict(svm,test_data);
 accuracy = eval_accuracy(test_labels,pLabel);
+
+%% Save accuracy and features to files
+filename_acc = sprintf('%s_accuracy',filename);
+filename_feats = sprintf('%s_features',filename);
+save(filename_acc,'accuracy');
+display('Successfully saved accuracy to a file.');
+save(filename_feats,'feature_vector');
+display('Successfully saved feature vector to a file.');
+
 
