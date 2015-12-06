@@ -1,4 +1,4 @@
-path = 'test_vids';
+path = 'handshake';
 % Return cell array of preprocessed videos from directory 'path'
 files = dir(path);
 files = files(4:end); % truncate '.' and '..' and 'DS thing'
