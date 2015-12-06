@@ -1,4 +1,4 @@
-path = '../sorted';
+path = 'handshake';
 
 % % Return cell array of preprocessed videos from directory 'path'
 % files = dir(path);
@@ -19,7 +19,7 @@ path = '../sorted';
 % 
 % display(sprintf('\nFinal min number of frames is "%d"',min));
 
-min = 15;
+min = 40;
 for i=1:n_files,
     currFolder = sprintf('%s/%s', path, files(i).name);
     trim_frames(currFolder,min);
