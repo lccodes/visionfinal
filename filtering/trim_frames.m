@@ -2,7 +2,7 @@ function minFrames = trim_frames(path,min)
 
 % Return cell array of preprocessed videos from directory 'path'
 files = dir(path);
-files = files(4:end); % truncate '.' and '..' and 'DS thing'
+files = files(3:end); % truncate '.' and '..' and 'DS thing'
 n_files = length(files);
 display(sprintf('\nCurrently in folder "%s"',path));
 
