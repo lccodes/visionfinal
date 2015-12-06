@@ -1,9 +1,9 @@
-path = 'handshake';
+path = 'nh';
 
 % % Return cell array of preprocessed videos from directory 'path'
-% files = dir(path);
-% files = files(4:end); % truncate '.' and '..' and 'DS thing'
-% n_files = length(files);
+ files = dir(path);
+ files = files(3:end); % truncate '.' and '..' and 'DS thing'
+ n_files = length(files);
 % vids = cell(n_files,1);
 % frameNums = zeros(n_files,1);
 % display(sprintf('\nCurrently in folder "%s"',path));
