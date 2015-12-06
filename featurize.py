@@ -10,7 +10,7 @@ def main():
             if file.endswith(".gif"):
                 filename = os.path.join(root, file)
                 mp4name = filename.replace('gif', 'mp4')
-                command = './ffmpeg -f gif -i ' + filename + ' -vf scale=320:240 ' + mp4name
+                command = '../ffmpeg -f gif -i ' + filename + ' -vf scale=320:240 ' + mp4name
                 os.system(command)
 
 if __name__ == '__main__':
