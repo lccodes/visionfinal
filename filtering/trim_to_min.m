@@ -1,4 +1,4 @@
-path = 'test';
+path = 'nd';
 
 % % Return cell array of preprocessed videos from directory 'path'
  files = dir(path);
