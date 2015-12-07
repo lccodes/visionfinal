@@ -1,8 +1,0 @@
-function [myVideo2, frameNum] = load_text_data(path)
-% Takes a path to a text file and loads it into a matrix.
-
-filename = path;
-delimiterIn = ' ';
-header
-
-end
