@@ -1,41 +1,16 @@
 %% Change these:
-% path = 'YOUR_ACTION_FOLDER_PATH_HERE';
-path = '../../actions';
-
-%% Create our spatial gabors
-gabor_size = 25;    
-lambda = 5;   
-theta= [0, pi/2, pi, (2/3)*pi]; 
-sigma = 2;    
-gamma = .5;   
-psi = 0;
-
-simples = cell(1,length(theta));
-for i=1:length(theta),
-    simples{1,i} = simple_cell(gabor_size, lambda, theta(i), sigma, gamma, psi);
-end
-
-%% Create our spatiotemporal gabors
-theta = 0;
-omega = [-4*pi,-pi/2,pi/2,4*pi]; 
-
-motions = cell(1,length(theta));
-for i=1:length(omega),
-    motions{1,i} = spatio_temporal(gabor_size, omega(i), lambda, theta, sigma, gamma, psi);
-end
-
-%% Load and preprocess the videos
+% path = 'YOUR_DATA_FOLDER_PATH_HERE';
+path = './data';
+%% Load fast features output feature data to matrix
 % Return cell array of preprocessed videos from folders in directory 'path'
 folders = dir(path);
-folders = folders(4:end); % truncate '.' and '..'
-num_actions = length(folders);
-actions = cell(num_actions,1);
-num_frames = cell(num_actions,1);
-for i=1:num_actions,
-   subfolder = sprintf('%s/%s', path, folders(i).name);
-   [actions{i}, num_frames{i}] = load_and_preprocess_folder(subfolder);
-end
+files = files(4:end); % truncate '.' and '..'
+num_files = length(files);
 
+for i = 1:num_files
+    filepath = strcat(path, 
+    data = load_text_data(
+end
 %% Filter the videos
 simple_actions = cell(num_actions,1);
 for i=1:num_actions,
