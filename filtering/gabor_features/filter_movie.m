@@ -1,6 +1,6 @@
 %% Change these:
 % path = 'YOUR_ACTION_FOLDER_PATH_HERE';
-path = 'actions';
+path = '../../actions';
 
 %% Create our spatial gabors
 gabor_size = 25;    
@@ -79,8 +79,8 @@ end
 % end
 
 %% Save features in case svm fails
-save('spatial_features','simple_actions');
-save('spatiotemp_features','feature_vector');
+% save('spatial_features','simple_actions');
+% save('spatiotemp_features','feature_vector');
 
 %% Classify the actions being performed 
 [accuracy_spatial,spatial_features,spatial_labels]  = train_and_test_svm(simple_actions, 'spatial');
