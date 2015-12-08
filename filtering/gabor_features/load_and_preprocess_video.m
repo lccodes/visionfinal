@@ -14,7 +14,7 @@ num_frames = int16(fix(loaded_video.FrameRate*loaded_video.Duration));
 
 %hold the contents of the frame to move to cell array
 myVideo = zeros(x,y,3,num_frames);
-reshapeY = 150;
+reshapeY = 100;
 reshapeX = 1.3*reshapeY;
 % max_frames = 40; %%CHANGE
 % myVideo2 = zeros(reshapeX,reshapeY,max_frames);
@@ -23,10 +23,11 @@ reshapeX = 1.3*reshapeY;
 frameNum = 0;
 for i=1:num_frames,
     frame = mat2gray(readFrame(loaded_video));
+%     display(size(frame));
     frameNum = frameNum + 1;
 %     myVideo2(:,:,i) = frame(:,:,1);
 %     myVideo(:,:,:,i) = frame;
-    myVideo2(:,:,i) = imresize(myVideo(:,:,1,i),[reshapeX, reshapeY]);
+    myVideo2(:,:,i) = imresize(frame(:,:,1),[reshapeX, reshapeY]);
 end
 display(sprintf('Successfully loaded %d frames',frameNum));
 

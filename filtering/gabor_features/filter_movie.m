@@ -61,13 +61,13 @@ for i=1:num_actions,
 end
 
 %% If you want to watch a video...
-% frameNum = num_frames{1}(1);
-% for j=1:4,
-%     for i=1:frameNum,
-%         imagesc(simple_actions{1}{2}(:,:,i,j));
-%         pause(0.03);
-%     end
-% end
+frameNum = num_frames{1}(1);
+for j=1:4,
+    for i=1:frameNum,
+        imagesc(simple_actions{1}{2}(:,:,i,j));
+        pause(0.03);
+    end
+end
 
 %%
 % frameNum = num_frames{1}(1);
@@ -83,12 +83,24 @@ end
 % save('spatiotemp_features','feature_vector');
 
 %% Classify the actions being performed 
+% super baseline: no filtering
+A =[];
+for i = 1:20
+    [accuracy_nofilter,nofilter_features,nofilter_labels]  = train_and_test_svm_nofilter(actions, 'nofilter');
+    A = [A, accuracy_nofilter];
+end
+avg_no_filteraccuracy = mean(A);
+
+%%
+% spatial gabors
 [accuracy_spatial,spatial_features,spatial_labels]  = train_and_test_svm(simple_actions, 'spatial');
 
 %%
+% spatiotemporal gabors
 [accuracy_spatiotemporal,spatiotemp_features,spatiotemp_labels] = train_and_test_svm(motion_actions, 'spatiotemporal');
 
 %%
+% spatial + spatiotemporal gabors
 combined_actions = horzcat(spatial_features, spatiotemp_features);
 combined_labels = horzcat(spatial_labels, spatiotemp_labels);
 accuracy_combined = train_and_test_svm_combined(combined_actions, combined_labels, 'combined');

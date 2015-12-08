@@ -1,4 +1,4 @@
-function [accuracy, feature_vector, feature_labels] = train_and_test_svm(features,filename)
+function [accuracy, feature_vector, feature_labels] = train_and_test_svm_nofilter(features,filename)
 % features{action_type}{video_num}(x,y,color,time,filter)
 
 %% Reshape features into feature vector of x by y by t by filter
@@ -6,7 +6,6 @@ feature_size = size(features{1}{1});
 x = feature_size(1);
 y = feature_size(2);
 frames = feature_size(3);
-filters = feature_size(4);
 
 action_types = length(features);
 num_videos = 0;
@@ -14,7 +13,7 @@ for i=1:action_types,
    num_videos = num_videos + length(features{i}); 
 end
 
-vec_length = x*y*frames*filters;
+vec_length = x*y*frames;
 feature_vector = zeros(num_videos,vec_length);
 
 count = 0;
@@ -50,15 +49,6 @@ svm = fitcecoc(train_data,train_labels);
 [pLabel, pScore] = predict(svm,test_data);
 accuracy = eval_accuracy(test_labels,pLabel);
 
-%%
-confusion = zeros(2,length(pLabel))';
-confusion(:,1) =  test_labels;
-confusion(:,2) = pLabel;
-
-confusionMat = horzcat(test_labels, pLabel);
-display(confusionMat);
-filename_conf = sprintf('%s_accuracy',filename);
-save(filename_conf,'confusionMat');
 
 %% Save accuracy and features to files
 % filename_acc = sprintf('%s_accuracy',filename);
