@@ -1,2 +1,0 @@
-function [labels, = read_fast_features(dir)
-mat = 0;
